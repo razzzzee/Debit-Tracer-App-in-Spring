@@ -1,0 +1,34 @@
+<div class="container">
+  <form [formGroup]="listForm">
+    <div class="form-group" style="width:240px">
+      <label for="account">Select the bank account:</label>
+      <select class="form-control" formControlName="account" id="account" #t (change)="onChange($event)">
+        <option [value]="account.accountID" *ngFor="let account of accountList">{{account.accountID}}-{{account.bankName}}</option>
+      </select>
+    </div>
+  </form>
+</div>
+<div class="container" *ngIf="accountSelect">
+  <h2>Debt Information for the account {{selectAccount}}:</h2>
+  <table class="account-information table">
+    <thead>
+      <tr>
+        <th>AccountID</th>
+        <th>Date</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let debtInfo of debtInfoList">
+        <td>{{debtInfo.accountID}}</td>
+        <td>{{debtInfo.dateOfTransaction}}</td>
+        <td>{{debtInfo.amount}}</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>{{total}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
